@@ -5,7 +5,7 @@ import socket
 import wmi
 import subprocess
 import uuid
-import csv # Agora usando o módulo nativo
+import csv 
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import customtkinter as ctk
@@ -14,7 +14,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from supabase import create_client, Client
 
-# Configurações de Aparência
+#Aparência
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
@@ -28,7 +28,7 @@ class CheckMachinePro(ctk.CTk):
         self.supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
         self.c_local = wmi.WMI()
         self.lista_empresas_cache = []
-        self.admin_password = "HesoYam@1T3CH"
+        self.admin_password = "Senha.Exemplo"
 
         self.main_container = ctk.CTkFrame(self, fg_color="transparent")
         self.main_container.pack(expand=True, fill="both")
@@ -202,7 +202,7 @@ class CheckMachinePro(ctk.CTk):
         dados = query.execute().data
         for r in dados: tree.insert("", "end", values=[r.get(c) for c in self.cols])
 
-    # --- EXPORTAR CSV SEM PANDAS (OTIMIZADO) ---
+    #EXPORTAR CSV
     def exportar_csv_otimizado(self):
         filas = [self.tree_leitura.item(c)["values"] for c in self.tree_leitura.get_children()]
         if not filas: return
